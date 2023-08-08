@@ -14,6 +14,8 @@ final nowPlayingMoviesProviders = StateNotifierProvider<MoviesNotifier, List<Mov
 
 typedef MovieCallback = Future<List<Movie>> Function({int page});
 
+
+
 class MoviesNotifier extends StateNotifier<List<Movie>>{
 
   int currentPage = 0;
@@ -22,10 +24,15 @@ class MoviesNotifier extends StateNotifier<List<Movie>>{
 
   MoviesNotifier({required this.fetchMoreMovies}):super([]);
 
+
+
   Future<void> loadNexPage() async{
     currentPage++;
-
     final List<Movie> movies = await fetchMoreMovies(page: currentPage);
     state = [ ...state, ...movies];
   }
+
+
+
+
 }
