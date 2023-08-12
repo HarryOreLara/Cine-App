@@ -21,22 +21,19 @@ class MovieHorizonalListview extends StatefulWidget {
 }
 
 class _MovieHorizonalListviewState extends State<MovieHorizonalListview> {
-
   final scrollController = ScrollController();
   @override
   void initState() {
     super.initState();
     scrollController.addListener(() {
-      if(widget.loadNexPage == null) return;
+      if (widget.loadNexPage == null) return;
 
-      if((scrollController.position.pixels + 200) >= scrollController.position.maxScrollExtent){
-        print('Load next movies');
-
+      if ((scrollController.position.pixels + 200) >=
+          scrollController.position.maxScrollExtent) {
         widget.loadNexPage!();
       }
     });
   }
-
 
   @override
   void dispose() {
@@ -57,12 +54,12 @@ class _MovieHorizonalListviewState extends State<MovieHorizonalListview> {
             ),
           Expanded(
               child: ListView.builder(
-                controller: scrollController,
+            controller: scrollController,
             physics: const BouncingScrollPhysics(),
             itemCount: widget.movies.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return _Slide(movie: widget.movies[index]);
+              return FadeInRight(child: _Slide(movie: widget.movies[index]));
             },
           ))
         ],
@@ -139,7 +136,10 @@ class _Slide extends StatelessWidget {
                 ),
                 //const SizedBox(width: 10,),
                 const Spacer(),
-                Text(HumanFormats.number(movie.popularity), style: textStyle.bodySmall,)
+                Text(
+                  HumanFormats.number(movie.popularity),
+                  style: textStyle.bodySmall,
+                )
               ],
             ),
           )
