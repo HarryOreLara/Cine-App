@@ -12,4 +12,6 @@ abstract class MovieDataSource{
 
 
 
+  Future<Movie> getMovieById(String id);
+
 }
